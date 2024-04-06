@@ -6,6 +6,7 @@ import { ethers } from "ethers";
 import { useAccount } from "wagmi";
 import { NFTStorage, File } from "nft.storage";
 import { LoadingSuspense } from "../suspense/Loading";
+import { LoadedSuspense } from "../suspense/Loaded";
 
 export const CreateView = () => {
   const client = new NFTStorage({
@@ -22,6 +23,7 @@ export const CreateView = () => {
   const [numberOfCopies, setNumberOfCopies] = useState(0);
   const [nftSymbol, setNftSymbol] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false)
 //   const [tokenURI, setTokenURI] = useState("");
   const [uploadedImageURL, setUploadedImageURL] = useState(null);
   const account = useAccount();
@@ -49,12 +51,14 @@ export const CreateView = () => {
     setIsLoading(true);
     handleUploadImageToIpfs();
     handleUploadMusicToIpfs();
-    setTimeout(async () => {
-      storeExampleNFT();
-    //   setTimeout(async () => {
+    
+    //setTimeout(async () => {
+     //storeExampleNFT();
+    //setTimeout(async () => {
+   //   setIsloaded(true)
     //     mintNFTonFactory()
     //   },25000);
-    }, 15000);
+    // }, 10000);
     // getExampleImage();
   } catch (error) {
     console.log(error);
@@ -82,6 +86,9 @@ export const CreateView = () => {
       const url = `https://ipfs.io/ipfs/${cid2}`;
       musicUrl = url;
       console.log("Uploaded music:", musicUrl);
+      setIsLoading(false);
+      setIsLoaded(true)
+      setIsLoaded(false)
     } catch (error) {
       console.log(error);
     }
@@ -108,7 +115,7 @@ export const CreateView = () => {
     console.log("NFT data stored!");
     console.log("Metadata URI: ", metadata.url);
     // setTokenURI(metadata.url);
-    tokenURI = metadata.url;
+    //tokenURI = metadata.url;
     setIsLoading(false);
     mintNFTonFactory();
   }
@@ -308,6 +315,7 @@ export const CreateView = () => {
           
         </div>
       </div>
+      {isLoaded && <LoadedSuspense/>}
       {isLoading && <LoadingSuspense/>}
     </div>
   );
