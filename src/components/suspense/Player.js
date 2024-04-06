@@ -3,6 +3,7 @@ import { GlobalContext } from "@/context/context"
 import { IoIosExit } from "react-icons/io"
 import { formatEthAddress } from "@/config/format"
 import { parseEther,formatEther } from "ethers"
+import { Buy } from "../Buttons/BuyButton"
 export const PlayerSuspense = () => {
     const { isPlayer,setIsPlayer,genre,imgUrl, artist,musicUrl, price } = GlobalContext()
     return(
@@ -38,7 +39,9 @@ export const PlayerSuspense = () => {
                <div className='text-start ml-3 font-semibold'>{`Address:  ${formatEthAddress(artist)}`}</div>
                <div className='text-start ml-3 font-semibold'>{`Price:  ${formatEther(price)} ETH`}</div>
             </div>
-            
+            <div className='w-[95%] ml-auto py-4 px-3 rounded-2xl bg-white/25 mr-auto border border-black/25  h-12 '>
+               <button className='bg-black w-[150px]'></button>
+            </div>
            </div>
            <div>
             

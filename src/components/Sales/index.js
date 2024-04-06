@@ -135,8 +135,8 @@ export const SalesView = () => {
                   setArtist(student.owner);
                   setPrice(student.price)
                  
-                  }} className="h-8 w-[130px] rounded-2xl bg-blue-600/85 ml-4 mr-auto">Preview</button>
-                <button className="h-8 w-[130px] rounded-2xl bg-blue-600/85 ml-auto mr-4">Buy</button>
+                  }} className="h-8 w-[130px] text-white rounded-2xl bg-black/95 ml-4 mr-auto">Explore</button>
+                
               </div>
               {isPlayer && <PlayerSuspense />}
               
