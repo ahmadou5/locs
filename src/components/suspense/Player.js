@@ -39,8 +39,8 @@ export const PlayerSuspense = () => {
                <div className='text-start ml-3 font-semibold'>{`Address:  ${formatEthAddress(artist)}`}</div>
                <div className='text-start ml-3 font-semibold'>{`Price:  ${formatEther(price)} ETH`}</div>
             </div>
-            <div className='w-[95%] ml-auto py-4 px-3 rounded-2xl bg-white/25 mr-auto border border-black/25  h-12 '>
-               <button className='bg-black w-[150px]'></button>
+            <div className='w-[95%] ml-auto py-4 px-3 rounded-2xl bg-white/25 mr-auto border border-black/25  h-16 '>
+               <button className='bg-black h-10 rounded-2xl w-[150px]'>Buy</button>
             </div>
            </div>
            <div>
