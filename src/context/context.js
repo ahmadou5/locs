@@ -5,20 +5,35 @@ import { createContext, useContext, useState } from "react";
 export const beatContext = createContext({});
 
 export const BeatContextProvider = ({children}) => {
-    const [address, setAddress] = useState('');
+    const [artist, setArtist] = useState('');
+    const [price, setPrice] = useState(0);
+    const [imgUrl, setImgUrl] = useState('');
+    const [musicUrl, setMusicUrl] = useState('');
+    const [genre, setGenre] = useState('');
     const [isArtist,setIsArtist] = useState(false)
     const [isAdmin,setIsAdmin] = useState(false)
+    const [isPlayer,setIsPlayer] = useState(false)
     const [nftLength,setNftLenght] = useState(0)
     
     const value = {
-        address,
-        setAddress,
+        artist,
+        setArtist,
         isArtist,
         setIsArtist,
         isAdmin,
         setIsAdmin,
         nftLength,
-        setNftLenght
+        setNftLenght,
+        isPlayer,
+        setIsPlayer,
+        imgUrl, 
+        setImgUrl,
+        musicUrl, 
+        setMusicUrl,
+        genre, 
+        setGenre,
+        price, 
+        setPrice
     }
     return(
     <beatContext.Provider value={value}>

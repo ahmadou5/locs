@@ -2,16 +2,19 @@
 import { FaSearchengin, FaSear } from "react-icons/fa6";
 import { IoIosSearch, IoMdPlay } from "react-icons/io";
 import { useAccount } from "wagmi";
+import { formatEthAddress } from "@/config/format";
 import { Each } from "./components/Each";
+import { GlobalContext } from "@/context/context";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { PlayerSuspense } from "../suspense/Player";
 export const SalesView = () => {
   const [audio,setAudio] = useState(false)
   const [searchVal, setSearchVal] = useState('')
   const [nfts, setNfts] = useState([]);
-  const ListedNFTEndpoint = 'https://d-beats-server-8095.onrender.com/allNfts'
+  const ListedNFTEndpoint = 'https://d-beats-server-8095.onrender.com/listed'
   const {address} = useAccount()
-
+  const { isPlayer,setIsPlayer,setGenre,imgUrl, setImgUrl,musicUrl, setArtist, setPrice, setMusicUrl} = GlobalContext()
 
   useEffect(() => {
     const getAllNfts = async () => {
@@ -105,60 +108,44 @@ export const SalesView = () => {
                 <>
             <div
               key={index}
-              className="h-[500px] ml-8 mr-8  w-[400px] py-2 px-2 mt-5 mb-5  rounded-2xl bg-black/25"
+              className="h-[420px] ml-8 mr-8  w-[400px] py-2 px-2 mt-5 mb-5  rounded-2xl bg-black/25"
             >
-              <div className="w-[95%] ml-auto mr-auto rounded-2xl bg-white/55 h-[60%]">
+              <div className="w-[95%] ml-auto mr-auto rounded-2xl bg-white/55 h-[67%]">
                 <img
-                  src="./assets/headphone.png"
-                  className="w-[90%] ml-auto mr-auto h-[98%]"
+                  src={student.imageURL}
+                  className="w-[100%] ml-auto rounded-2xl mr-auto h-[100%]"
                 />
               </div>
               <div className="flex w-[95%]">
-                <div className="w-full py-2 px-3 flex">
-                  <div>{`Name:  ${student.name}`}</div>
-                </div>
-                <div className="w-full py-2 px-2 flex">
-                  <div>{`Price:  ${student.price}`}</div>
+                <div className="w-full py-2 px-4 flex">
+                  <div className='font-extrabold'>{`${student.name}`}</div>
                 </div>
               </div>
-              <div className="w-full mt-2 mb-2 flex">
+              <div className="flex w-[95%]">
+                <div className="w-full py-2 px-4 flex">
+                  <div className='font-extrabold'>{`Artist:  ${formatEthAddress(student.owner)}`}</div>
+                </div>
+              </div>
+              <div className="w-full mt-4 mb-2 flex">
+                <button onClick={() => {
+                   setIsPlayer(true);
+                  setGenre(student.name);
+                  setImgUrl(student.imageURL);
+                  setMusicUrl(student.musicFileURL);
+                  setArtist(student.owner);
+                  setPrice(student.price)
+                 
+                  }} className="h-8 w-[130px] rounded-2xl bg-blue-600/85 ml-4 mr-auto">Preview</button>
                 <button className="h-8 w-[130px] rounded-2xl bg-blue-600/85 ml-auto mr-4">Buy</button>
-                
               </div>
-              <div
-                className="w-full flex
-              "
-              >
-                {
-                  audio &&
-                  <audio
-                  className="w-[90%] ml-auto mr-auto mt-5 mb-2"
-                  controls
-                  autoplay
-                >
-                  <source src="horse.ogg" type="audio/ogg" />
-                  <source src="horse.mp3" type="audio/mpeg" />
-                  Your browser does not support the audio element.
-                </audio>
-                }
-                {
-                  !audio && 
-                  <div className="ml-5 py-5">
-                    <div onClick={() => {
-                      setAudio(true)
-                    }} className="bg-blue-400 h-12 w-12 rounded-full py-3 px-4">
-                    <IoMdPlay className="text-white mt-0.5 text-xl"/>
-                  </div>
-                  </div>
-                  
-                }
-               
-              </div>
+              {isPlayer && <PlayerSuspense />}
+              
             </div>
-          </>              ))
+          </>))
             }
             
           </div>
+         
         </div>
       </div>
     </>
