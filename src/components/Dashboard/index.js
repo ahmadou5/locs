@@ -12,6 +12,7 @@ import {
   DBeatsMarketplaceAbi,
   nftAbi,
 } from "@/config/data";
+import { useApproveItem } from "./hooks/approveItem";
 
 export const DashboardView = () => {
   const {
@@ -32,9 +33,10 @@ export const DashboardView = () => {
   const [audio, setAudio] = useState(false);
   const [address, setAddress] = useState("");
   const [nftAddress, setNftAddress] = useState("");
+  const [approved, setApproved] = useState(false);
   const account = useAccount();
   const userAddress = account.address;
- 
+  const { isApproved, isLoading, error } = useApproveItem(nftAddress);
   useEffect(() => {
     const getAllNfts = async () => {
       console.log("getting all nfts");
@@ -59,71 +61,14 @@ export const DashboardView = () => {
     getAllNfts();
   }, [userAddress]);
 
-  const approveItem = async () => {
-    if (!window.ethereum) {
-      alert("Please install MetaMask!");
-      return;
-    }
-    try {
-      await window.ethereum.request({ method: "eth_requestAccounts" });
-    } catch (error) {
-      console.error("User denied account access");
-      return;
-    }
-    const provider = new ethers.BrowserProvider(window.ethereum);
-    const signer = await provider.getSigner();
-    const nftContract = new ethers.Contract(nftAddress, nftAbi, signer);
-    try {
-      const res = await nftContract.isApprovedForAll(
-        userAddress,
-        DBeatsMarketplaceAddress
-      );
-      if (res === true) {
-        return;
-      }
-      const tx = await nftContract.setApprovalForAll(
-        DBeatsMarketplaceAddress,
-        true
-      );
-      await tx.wait();
-      alert("Item approved successfully");
-    } catch (error) {
-      console.error("Error listing item:", error);
-    }
-  };
-
-  const listItem = async () => {
-    if (!window.ethereum) {
-      alert("Please install MetaMask!");
-      return;
-    }
-    try {
-      await window.ethereum.request({ method: "eth_requestAccounts" });
-    } catch (error) {
-      console.error("User denied account access");
-      return;
-    }
-    const provider = new ethers.BrowserProvider(window.ethereum);
-    const signer = await provider.getSigner();
-    const marketplaceContract = new ethers.Contract(
-      DBeatsMarketplaceAddress,
-      DBeatsMarketplaceAbi,
-      signer
-    );
-    const listingPrice = await marketplaceContract._listingPrice();
-    const contractWithSigner = marketplaceContract.connect(signer);
-
-    try {
-      const tx = await contractWithSigner.listItem(nftAddress, 3, 100000000, {
-        value: listingPrice,
-        gasLimit: 221000,
+  useEffect(() => {
+    if (approved) {
+      useApproveItem(nftAddress).then(() => {
+        // Reset the trigger after the approval process is complete
+        setApproved(true);
       });
-      await tx.wait();
-      alert("Item listed successfully");
-    } catch (error) {
-      console.error("Error listing item:", error);
     }
-  };
+  }, [approved, nftAddress]);
 
   return (
     <div className="mt-16">
@@ -147,7 +92,7 @@ export const DashboardView = () => {
               </div>
               <div className="flex w-[95%]">
                 <div className="w-full py-2 px-4 flex">
-                  {/* <div className='font-extrabold'>{`Artist:  ${formatEthAddress(student?.owner)}`}</div> */}
+                  <div className='font-extrabold'>{`Artist:  ${formatEthAddress(student?.artistAddress)}`}</div>
                 </div>
               </div>
               <div className="w-full mt-4 mb-2 flex">
@@ -165,12 +110,9 @@ export const DashboardView = () => {
                   Explore
                 </button>
                 <button
-                  onClick={async () => {
-                    console.log(student.nftAddress);
-                    setNftAddress(student.nftAddress);
-                    await approveItem();
-                    await listItem();
-                  }}
+                  onClick={
+                    async () => setNftAddress(student.nftAddress)
+                  }
                   className="h-8 w-[130px] text-white rounded-2xl bg-black/95 ml-4 mr-auto"
                 >
                   List Item
