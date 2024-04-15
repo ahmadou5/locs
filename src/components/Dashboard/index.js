@@ -51,8 +51,8 @@ export const DashboardView = () => {
         setNftLenght(response.data?.length);
 
         // Update the state with the filtered data
-        setNfts(response.data);
-        // setNfts(filteredNfts);
+        // setNfts(response.data);
+        setNfts(filteredNfts);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
