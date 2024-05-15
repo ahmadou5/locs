@@ -10,6 +10,7 @@ export const UserCard = () => {
     const {  data } = useBalance({
         address: address,
     })
+
     return(
     <div className="w-full mt-[160px] h-auto">
         <div className="bg-black/50 w-[90%] mt-8 py-3 px-5 rounded-2xl h-auto ml-auto mr-auto ">
