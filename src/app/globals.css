@@ -186,27 +186,20 @@ input[type="date"]:valid + span::after {
 
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
+  --foreground-rgb: #171717;
+  --background-start-rgb: #c0bdbd;
   --background-end-rgb: 255, 255, 255;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
 
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
       transparent,
-      rgb(204, 238, 238)
+      #171717
     )
-    rgb(203, 236, 236);
+    #303030;
 }
 
 @layer utilities {

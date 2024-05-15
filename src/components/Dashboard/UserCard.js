@@ -11,7 +11,7 @@ export const UserCard = () => {
         address: address,
     })
     return(
-    <div className="w-full mt-24 h-auto">
+    <div className="w-full mt-[160px] h-auto">
         <div className="bg-black/50 w-[90%] mt-8 py-3 px-5 rounded-2xl h-auto ml-auto mr-auto ">
           <div className="flex flex-row">
             <div className="w-[48%] flex py-2 px-2 h-[90%] ml-auto mr-auto bg-white/25 rounded-3xl">

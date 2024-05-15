@@ -24,7 +24,7 @@ export const UserPages = () => {
     <div className="flex flex-row">
               {isConnected && userPages.map((page, i) => (
                 <Link key={i} href={`${page.url}`} className="flex ml-2 mr-2">
-                  <p className="ml-0 mr-0 text-black cursor-pointer hover:font-light font-bold text-xl">
+                  <p className="ml-0 mr-0 text-white/75 cursor-pointer hover:font-light font-bold text-xl">
                     {page.name}
                   </p>
                   {page.status === 'Live' && <div
@@ -68,7 +68,7 @@ export const ArtistPages = () => {
     <div className="flex flex-row">
               {isConnected && artistPages.map((page, i) => (
                 <Link key={i} href={`${page.url}`} className="flex ml-2 mr-2">
-                  <p className="ml-0 mr-0 text-black cursor-pointer hover:font-light font-bold text-xl">
+                  <p className="ml-0 mr-0 text-white/75 cursor-pointer hover:font-light font-bold text-xl">
                     {page.name}
                   </p>
                   {page.status === 'Live' && <div
@@ -108,7 +108,7 @@ export const AdminPages = () => {
   <div className="flex flex-row">
             {isConnected && adminPages.map((page, i) => (
               <Link key={i} href={`${page.url}`} className="flex ml-2 mr-2">
-                <p className="ml-0 mr-0 text-black cursor-pointer hover:font-light font-bold text-xl">
+                <p className="ml-0 mr-0 text-white/75  cursor-pointer hover:font-light font-bold text-xl">
                   {page.name}
                 </p>
                 {page.status === 'Live' && <div

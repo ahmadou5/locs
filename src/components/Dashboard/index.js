@@ -38,7 +38,7 @@ export const DashboardView = () => {
     getAllNfts();
   }, [userAddress]);
   return (
-    <div className="mt-16">
+    <div className="mt-24">
      
       <div className="mt-10 w-full mb-[190px] ml-auto mr-auto flex flex-wrap h-auto">
         {nfts.map((student, index) => (

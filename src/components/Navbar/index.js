@@ -78,13 +78,13 @@ export const Navbar = () => {
         {/**for desktop view **/}
         <div
           style={{ "backdrop-filter": "blur(12px)" }}
-          className="mb-5 bg-transaparent backdrop-blur-3xl bg-clip-padding bg-opacity-60 fixed z-10 text-black lg:flex md:flex hidden w-[100%] h-20"
+          className="w-[95%] ml-auto mr-auto rounded-full bg-black/20 py-1 px-1.5 z-0 mt-8  fixed inset-x-0 top-2 flex justify-center items-center"
         >
-          <div className="py-5 px-5  mt-auto mb-auto ml-auto mr-auto w-[98%] flex flex-row  h-[90%]">
+          <div className="py-3.5 px-3.5  mt-auto mb-auto ml-auto mr-auto w-[98%] flex flex-row  h-[90%]">
             <div className="ml-0 mr-auto">
               <Link href={"/"}>
                 <div className="text-sm flex">
-                  <p className="text-black/55 flex text-3xl font-thin ml-1"><img className="h-9 mr-2 w-9" src="./assets/headphone.png"/><span className=" font-extrabold">Beat</span></p>
+                  <p className="text-white/85 flex text-3xl font-thin ml-1"><img className="h-9 mr-2 w-9 lg:mt-0.5 " src="./assets/headphone.png"/><span className=" mt-1 font-extrabold">Beat</span></p>
                 </div>
               </Link>
             </div>

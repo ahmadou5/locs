@@ -6,18 +6,7 @@ import {
 } from '@rainbow-me/rainbowkit';
 import { WagmiProvider } from 'wagmi';
 import {
-  
-  x1Testnet,
-  zetachainAthensTestnet,
-  opBNBTestnet,
-  bscTestnet,
-  optimismSepolia,
-  polygonZkEvmTestnet,
-  zoraSepolia,
-  optimismGoerli,
-  sepolia,
-  baseGoerli,
-  polygonMumbai,
+
   arbitrum,
   arbitrumGoerli,
   arbitrumNova,

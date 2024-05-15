@@ -4,7 +4,7 @@ import { EthProvider } from "@/provider";
 import { BeatContextProvider } from "@/context/context";
 
 const inter = Inter({ subsets: ["latin"] });
-const neucha = Numans({ subsets: ["latin"], weight: '400' });
+const neucha = Nunito({ subsets: ["latin"], weight: '400' });
 
 export const metadata = {
   title: "Create Next App",
