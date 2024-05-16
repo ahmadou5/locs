@@ -1,6 +1,12 @@
+//*****************Arbitrum Addresses ************************/
 export const artistNftAddress = "0x7b9720bbF9dc220fdBD4Ba633a7ae040304B59Cb";
 export const DBeatsFactoryAddress = "0x036E9Ba2FF01F2C6452B8fcd11c26B67534F73B4";
 export const DBeatsMarketplaceAddress = "0x306F0d6247760e23A91acD6E088bE593D1D0Bf9C";
+
+// ****************** Taraxa Addresses ************************/
+export const TaraxaArtistNftAddress= "0x7b9720bbF9dc220fdBD4Ba633a7ae040304B59Cb";
+export const TaraxaDBeatsFactoryAddress = "0x2615864f73Af1F3937255c9d757f73B21d398daE";
+export const TaraxaDBeatsMarketplaceAddress = "0xffF765dB85DBF82546b0e5a1161C520775B13248";
 export const artistNFTURI = "https://nftstorage.link/ipfs/bafybeigasec73g4h2i4tkwdfr3uy4ncd3phd63b55ujcmbp74hqu2vrhne/soundbound.json";
 export const artistNftAbi = [
 	{
